@@ -16,19 +16,19 @@ public class PessoaController {
     private PessoaService pessoaService;
 
     @GetMapping
-    public ResponseEntity<List<Pessoa>>  BuscarTodos() {
+    public ResponseEntity<List<Pessoa>>  buscarTodos() {
         return ResponseEntity.ok(pessoaService.buscarTodos());
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Optional<Pessoa>> BuscarPeloId(@PathVariable Long id) {
+    public ResponseEntity<Optional<Pessoa>> buscarPeloId(@PathVariable Long id) {
         Optional<Pessoa> pessoa = pessoaService.buscarPeloId(id);
         return pessoa.isPresent() ? ResponseEntity.ok(pessoa) : ResponseEntity.notFound().build();
 
     }
 
     @PostMapping
-    public ResponseEntity<Pessoa> Criar(@RequestBody Pessoa pessoa) {
+    public ResponseEntity<Pessoa> criar(@RequestBody PessoaDto pessoa) {
         try {
             return ResponseEntity.ok(pessoaService.criar(pessoa));
         } catch (Exception e) {

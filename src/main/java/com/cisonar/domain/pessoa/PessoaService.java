@@ -4,7 +4,10 @@ import com.cisonar.helper.ValidadorCpf;
 import com.cisonar.helper.ValidadorEmail;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 
+import javax.management.RuntimeErrorException;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -23,22 +26,22 @@ public class PessoaService {
         return pessoaRepository.findById(id);
     }
 
-    public Pessoa criar(Pessoa pessoa) throws Exception {
+    public Pessoa criar(PessoaDto pessoaDto) throws Exception {
         Date dataAtual = new Date();
 
-        if (pessoa.getDataNascimento().after(dataAtual)) {
-            throw new Exception("Nâo foi possível salvar, data de nascimento maior que a data atual.");
+        if (pessoaDto.getDataNascimento().after(dataAtual)) {
+            throw new RuntimeErrorException(new Error("Nâo foi possível salvar, data de nascimento maior que a data atual."));
         }
 
-        if(!ValidadorCpf.isCPF(pessoa.getCpf())) {
-            throw new Exception("Nâo foi possível salvar, CPF inválido.");
+        if (!ValidadorCpf.isCPF(pessoaDto.getCpf())) {
+            throw new RuntimeErrorException(new Error("Nâo foi possível salvar, CPF inválido."));
         }
 
-        if(!ValidadorEmail.isEmail(pessoa.getEmail())) {
-            throw new Exception("Nâo foi possível salvar, E-mail inválido.");
+        if (!ValidadorEmail.isEmail(pessoaDto.getEmail())) {
+            throw new RuntimeErrorException(new Error("Nâo foi possível salvar, E-mail inválido."));
         }
 
-        return pessoaRepository.save(pessoa);
+        return pessoaRepository.save(pessoaDto.adaptPessoaDto());
     }
 
     public void delete(Long id) {

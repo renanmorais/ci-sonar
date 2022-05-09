@@ -1,9 +1,7 @@
 package com.cisonar.domain.pessoa;
 
 import com.sun.istack.NotNull;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -11,6 +9,9 @@ import java.util.Date;
 @Getter
 @Setter
 @EqualsAndHashCode
+@AllArgsConstructor
+@NoArgsConstructor
+@RequiredArgsConstructor
 @Entity
 public class Pessoa {
 
