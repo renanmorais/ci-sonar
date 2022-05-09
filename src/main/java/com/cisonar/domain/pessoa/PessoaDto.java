@@ -1,4 +1,4 @@
-﻿package com.cisonar.domain.pessoa;
+package com.cisonar.domain.pessoa;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
