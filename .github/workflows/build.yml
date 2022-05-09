@@ -61,10 +61,4 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-          DATABASE_NAME: ${{ matrix.database-name }}
-          DATABASE_USER: ${{ matrix.database-user }}
-          DATABASE_PASSWORD: ${{ matrix.database-password }}
-          DATABASE_HOST: ${{ matrix.database-host }}
-          DATABASE_PORT: ${{ matrix.database-port }}
-          POSTGRES_DB: ${{ matrix.database-name }}
         run: ./gradlew build sonarqube --info
