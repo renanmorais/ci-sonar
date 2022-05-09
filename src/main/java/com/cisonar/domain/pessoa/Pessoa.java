@@ -1,6 +1,6 @@
 package com.cisonar.domain.pessoa;
 
-import com.sun.istack.NotNull;
+import com.sun.istack.*;
 import lombok.*;
 
 import javax.persistence.*;
